@@ -2183,10 +2183,10 @@ PHP_METHOD(zmqauth, __construct)
 		return;
 	}
 
-	intern->zauth = zauth_new(intern->shadow_context);
+	intern->zauth = zactor_new(zauth,intern->shadow_context);
 
 	if (!intern->zauth) {
-		zctx_destroy(&intern->shadow_context);
+		zsock_destroy(&intern->shadow_context);
 		zend_throw_exception_ex(php_zmq_auth_exception_sc_entry, PHP_ZMQ_INTERNAL_ERROR, "Failed to create the underlying zauth object.");
 	}
 	return;
