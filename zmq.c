@@ -1834,7 +1834,7 @@ PHP_METHOD(zmqcert, getPublicKey)
 	}
 
 	intern = PHP_ZMQ_CERT_OBJECT;
-	public_key = zcert_public_key(intern->zcert);
+	public_key = (byte *)zcert_public_key(intern->zcert);
 
 	if (!public_key) {
 		RETURN_NULL();
@@ -1855,7 +1855,7 @@ PHP_METHOD(zmqcert, getSecretKey)
 	}
 
 	intern = PHP_ZMQ_CERT_OBJECT;
-	secret_key = zcert_secret_key(intern->zcert);
+	secret_key = (byte *)zcert_secret_key(intern->zcert);
 
 	if (!secret_key) {
 		RETURN_NULL();
@@ -1876,7 +1876,7 @@ PHP_METHOD(zmqcert, getPublicTxt)
 	}
 
 	intern = PHP_ZMQ_CERT_OBJECT;
-	public_txt = zcert_public_txt(intern->zcert);
+	public_txt = (char *) zcert_public_txt(intern->zcert);
 
 	if (!public_txt) {
 		RETURN_NULL();
@@ -1897,7 +1897,7 @@ PHP_METHOD(zmqcert, getSecretTxt)
 	}
 
 	intern = PHP_ZMQ_CERT_OBJECT;
-	secret_txt = zcert_secret_txt(intern->zcert);
+	secret_txt = (char *)zcert_secret_txt(intern->zcert);
 
 	if (!secret_txt) {
 		RETURN_NULL();
@@ -1940,7 +1940,7 @@ PHP_METHOD(zmqcert, getMeta)
 	}
 
 	intern = PHP_ZMQ_CERT_OBJECT;
-	result = zcert_meta(intern->zcert, name->val);
+	result = (char *)zcert_meta(intern->zcert, name->val);
 
 	if (!result) {
 		RETURN_NULL();
@@ -1964,7 +1964,7 @@ PHP_METHOD(zmqcert, getMetaKeys)
 
 	intern = PHP_ZMQ_CERT_OBJECT;
 
-	meta_keys = zcert_meta_keys(intern->zcert);
+	meta_keys = (zlist_t *)zcert_meta_keys(intern->zcert);
 	meta_key = (char *) zlist_first(meta_keys);
 
 	array_init(return_value);

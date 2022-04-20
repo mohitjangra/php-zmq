@@ -1691,7 +1691,7 @@ ZEND_END_ARG_INFO();
 PHP_METHOD(zmqcert, getPublicKey)
 {
 	php_zmq_cert_object *intern;
-	byte *public_key;
+	const byte *public_key;
 
 	if (zend_parse_parameters_none() != SUCCESS) {
 		return;
