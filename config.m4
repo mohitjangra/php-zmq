@@ -117,14 +117,6 @@ if test "$PHP_ZMQ" != "no"; then
     if $PKG_CONFIG --exists libczmq; then
 
       AC_MSG_RESULT([yes])
-
-      AC_MSG_CHECKING([czmq version is below 3.0.0])
-      if $PKG_CONFIG libczmq --max-version=3.0.0; then
-        AC_MSG_RESULT([ok])
-      else
-        AC_MSG_ERROR([Only czmq 2.x is supported at the moment])
-      fi
-    
       PHP_CZMQ_VERSION=`$PKG_CONFIG libczmq --modversion`
       PHP_CZMQ_PREFIX=`$PKG_CONFIG libczmq --variable=prefix`
       AC_MSG_RESULT([found version $PHP_CZMQ_VERSION in $PHP_CZMQ_PREFIX])
