@@ -242,8 +242,8 @@ typedef struct _php_zmq_cert {
 } php_zmq_cert_object;
 
 typedef struct _php_zmq_auth {
-	zctx_t *shadow_context;
-	zauth_t *zauth;
+	zsock_t  *shadow_context;
+	zactor_t   *zauth;
 	zend_object zo;
 } php_zmq_auth_object;
 #endif
