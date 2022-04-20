@@ -2129,10 +2129,10 @@ void php_zmq_auth_object_free_storage(zend_object *object)
 	}
 
 	if (intern->zauth) {
-		zauth_destroy(&intern->zauth);
+		zactor_destroy(&intern->zauth);
 	}
 	if (intern->shadow_context) {
-		zctx_destroy(&intern->shadow_context);
+		zsock_destroy(&intern->shadow_context);
 	}
 	zend_object_std_dtor(&intern->zo);
 }
